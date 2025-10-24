@@ -40,44 +40,22 @@ body {
 }
 /* =============================================== */
 
- /* body {
-      background-color: #111;
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-    }
-
-    iframe {
-      width: 90%;
-      max-width: 800px;
-      height: 450px;
-      border: none;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-    } */
-
-/* Reset dan gaya dasar */
-
-/* Navbar */
 .navbar {
   position: sticky;
   top: 0;
+  left: 0;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 14px 20px;
-  background: rgba(242,135,5, 0.6);
-  /* background: rgba(20, 20, 20, 0.4); transparan */
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  z-index: 100;
+  background: rgba(242,135,5, 0.75); /* lebih transparan */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 999;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+  box-sizing: border-box;
 }
 
 /* Logo */
@@ -86,19 +64,20 @@ body {
   font-weight: bold;
   letter-spacing: 0.5px;
   color: white;
+  user-select: none;
 }
 
-/* Hamburger */
+/* Hamburger menu (ikon ☰) */
 .hamburger {
   font-size: 26px;
   background: none;
   border: none;
   color: white;
   cursor: pointer;
-  display: none; /* hanya muncul di mobile */
+  display: none; /* hanya muncul di HP */
 }
 
-/* Menu link */
+/* Link navigasi */
 .nav-links {
   display: flex;
   gap: 20px;
@@ -108,14 +87,15 @@ body {
   text-decoration: none;
   color: white;
   font-size: 16px;
-  transition: color 0.3s;
+  transition: color 0.3s, transform 0.2s;
 }
 
 .nav-links a:hover {
-  color: #ff3b30;
+  color:rgba(242,135,5, 0.75);
+  transform: scale(1.05);
 }
 
-/* Mobile version */
+/* === RESPONSIVE MODE UNTUK HP === */
 @media (max-width: 768px) {
   .hamburger {
     display: block;
@@ -126,117 +106,35 @@ body {
     position: absolute;
     top: 60px;
     right: 20px;
-    background:rgba(242,135,5, 0.6);
+    width: 160px;
+    background: rgba(17, 17, 17, 0.6);
     backdrop-filter: blur(10px);
     flex-direction: column;
+    align-items: flex-start;
     padding: 10px;
-    border-radius: 8px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
   }
 
   .nav-links a {
-    padding: 10px 20px;
-    display: block;
+    padding: 10px 15px;
+    width: 100%;
   }
 
   .nav-links.show {
     display: flex;
   }
 }
-/* ============================================= */
-/* .footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 12px 20px;
+
+/* Tambahan opsional: agar tidak overflow di layar kecil */
+body {
+  overflow-x: hidden;
+}
+
+/* Toggle nav tanpa JS */
+#menu-toggle:checked ~ .nav-links {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(17, 17, 17, 0.6); 
-  backdrop-filter: blur(10px);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  z-index: 100;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
 }
-
-.footer-btn {
-  background: rgba(242, 135, 5, 0.9);
-  color: #fff;
-  border: none;
-  padding: 10px 18px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 15px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-}
-
-.footer-btn:hover {
-  background: rgba(242, 135, 5, 1);
-  transform: scale(1.05);
-}
-
-.footer-btn:active {
-  transform: scale(0.97);
-} */
-
-/* ============================================= */
-/* .video-card {
-  width: 100%;
-  max-width: 400px;
-  background-color: #1c1c1c;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 0 15px rgba(255,255,255,0.1);
-}
-
-Jaga rasio video tetap 16:9
-.video-wrapper {
-  position: relative;
-  width: 100%;
-  padding-top: 56.25%; Rasio 16:9
-  overflow: hidden;
-}
-
-.video-wrapper iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
-Deskripsi di bawah video
-.video-desc {
-  padding: 10px 12px;
-  color: #fff;
-  text-align: left;
-}
-
-Batasi teks agar tidak terlalu panjang
-.video-desc h3 {
-  font-size: 16px;
-  font-weight: bold;
-  margin: 0 0 5px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.video-desc p {
-  font-size: 14px;
-  color: #ccc;
-  margin: 0;
-  display: -webkit-box;
-  -webkit-line-clamp: 2; tampil 2 baris saja
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-} */
-
-/* ======================================================= */
 
 .footer {
   position: fixed;
@@ -252,10 +150,11 @@ Batasi teks agar tidak terlalu panjang
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   z-index: 100;
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+  box-sizing: border-box; /* biar padding gak nambah lebar total */
 }
 
 .arrow-btn {
-  text-decoration: none;      /* hilangkan garis bawah */
+  text-decoration: none;
   color: #fff;
   font-size: 28px;
   font-weight: bold;
@@ -263,10 +162,22 @@ Batasi teks agar tidak terlalu panjang
   border: none;
   cursor: pointer;
   transition: all 0.2s ease;
+  flex-shrink: 0; /* cegah tombol mengecil saat di layar kecil */
 }
 
 .arrow-btn:hover {
   transform: scale(1.2);
   color: #f28705;
+}
+
+/* 🌟 RESPONSIVE MODE UNTUK HP */
+@media (max-width: 600px) {
+  .footer {
+    padding: 10px 16px;
+  }
+
+  .arrow-btn {
+    font-size: 22px; /* lebih kecil biar muat */
+  }
 }
 
